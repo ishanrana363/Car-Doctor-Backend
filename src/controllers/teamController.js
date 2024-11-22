@@ -74,28 +74,28 @@ const singleTeam = async (req, res, teamCollection) => {
     }
 };
 
-// const updateTeam = async (req, res, TeamCollection) => {
-//     try {
-//         let reqBody = req.body;
-//         let bannerId = req.params.id;
-//         let updateResult = await TeamCollection.updateOne({ _id: new ObjectId(bannerId) }, { $set: reqBody });
-//         if (updateResult.modifiedCount === 0) {
-//             return res.status(404).json({
-//                 status: "error",
-//                 msg: "Team not found"
-//             });
-//         }
-//         return res.status(200).json({
-//             status: "success",
-//             message: "Team updated successfully"
-//         });
-//     } catch (error) {
-//         return res.status(500).json({
-//             status: "error",
-//             msg: error.message
-//         });
-//     } // <-- Closing brace for the catch block
-// };
+const updateTeam = async (req, res, teamCollection) => {
+    try {
+        let reqBody = req.body;
+        let bannerId = req.params.id;
+        let updateResult = await teamCollection.updateOne({ _id: new ObjectId(bannerId) }, { $set: reqBody });
+        if (updateResult.modifiedCount === 0) {
+            return res.status(404).json({
+                status: "error",
+                msg: "Team not found"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            message: "Team updated successfully"
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            msg: error.message
+        });
+    } // <-- Closing brace for the catch block
+};
 
 // const deleteTeam = async (req, res, TeamCollection) => {
 //     try {
@@ -121,4 +121,4 @@ const singleTeam = async (req, res, teamCollection) => {
 
 
 
-module.exports = { createTeam,allTeams,singleTeam };
+module.exports = { createTeam,allTeams,singleTeam,updateTeam };
