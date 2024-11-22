@@ -17,25 +17,25 @@ const createTeam = async (req, res, teamCollection) => {
     }
 };
 
-// const allTeams = async (req, res, TeamCollection) => {
-//     try {
-//         // Fetch all Teams from the collection
-//         let Teams = await TeamCollection.find().toArray();
+const allTeams = async (req, res, teamCollection) => {
+    try {
+        // Fetch all Teams from the collection
+        let Teams = await teamCollection.find().toArray();
 
-//         // Return successful response with Teams data
-//         return res.status(200).json({
-//             status: "success",
-//             message: "All Teams fetched successfully",
-//             data: Teams
-//         });
-//     } catch (error) {
-//         // Catch any errors and return an error response
-//         return res.status(500).json({
-//             status: "error",
-//             msg: error.message
-//         });
-//     }
-// };
+        // Return successful response with Teams data
+        return res.status(200).json({
+            status: "success",
+            message: "All team members fetched successfully",
+            data: Teams
+        });
+    } catch (error) {
+        // Catch any errors and return an error response
+        return res.status(500).json({
+            status: "error",
+            msg: error.message
+        });
+    }
+};
 
 // const singleTeam = async (req, res, TeamCollection) => {
 //     try {
@@ -121,4 +121,4 @@ const createTeam = async (req, res, teamCollection) => {
 
 
 
-module.exports = { createTeam };
+module.exports = { createTeam,allTeams };
