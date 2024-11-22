@@ -32,6 +32,28 @@ const allBanners = async (req, res, bannerCollection) => {
     }
 };
 
+const singleBanners = async (req, res, bannerCollection) => {
+    try {
+        let bannerId = req.params.id;
+        let banner = await bannerCollection.findOne({ _id: new ObjectId(bannerId) });
+        if (!banner) {
+            return res.status(404).json({
+                status: "error",
+                msg: "Banner not found"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            data: banner
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            msg: error.message
+        });
+    } // <-- Closing brace for the catch block
+};
+
 const updateBanner = async (req, res, bannerCollection) => {
     try {
         let reqBody = req.body;
@@ -79,4 +101,4 @@ const deleteBanner = async (req, res, bannerCollection) => {
 
 
 
-module.exports = { createBanner, allBanners ,updateBanner,deleteBanner}
+module.exports = { createBanner, allBanners,singleBanners ,updateBanner,deleteBanner}
