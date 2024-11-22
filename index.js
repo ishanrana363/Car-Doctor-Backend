@@ -18,6 +18,10 @@ const port = process.env.PORT || 3000;
 
     app.use("/api/v1", productRoute(productCollection));
 
+    app.get('/',async (req,res)=>{
+        res.send('Welcome to the Product API');
+    })
+
     app.listen(port, () => {
         console.log(`Server is running on port ${port}`);
     });
