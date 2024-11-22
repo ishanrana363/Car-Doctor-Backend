@@ -4,6 +4,7 @@ require("dotenv").config();
 const { connectToDatabase } = require("./db");
 const productRoute = require("./src/routes/productRoute");
 const bannerRoute = require("./src/routes/bannerRoute");
+const teamRoute = require("./src/routes/teamRoute");
 
 
 
@@ -17,9 +18,11 @@ const port = process.env.PORT || 3000;
     const db = await connectToDatabase();
     const productCollection = db.collection("products");
     const bannerCollection = db.collection("banners");
+    const teamCollection = db.collection("teams");
 
     app.use("/api/v1", productRoute(productCollection));
     app.use("/api/v1",  bannerRoute(bannerCollection));
+    app.use("/api/v1",  teamRoute(teamCollection));
 
     app.get('/',async (req,res)=>{
         res.send('Welcome to the Product API');
