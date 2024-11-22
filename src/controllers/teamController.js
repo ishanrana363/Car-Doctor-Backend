@@ -37,42 +37,42 @@ const allTeams = async (req, res, teamCollection) => {
     }
 };
 
-// const singleTeam = async (req, res, TeamCollection) => {
-//     try {
-//         const TeamId = req.params.id;
+const singleTeam = async (req, res, teamCollection) => {
+    try {
+        const TeamId = req.params.id;
 
-//         // Validate if the provided ID is a valid ObjectId
-//         if (!ObjectId.isValid(TeamId)) {
-//             return res.status(400).json({
-//                 status: "error",
-//                 msg: "Invalid Team ID"
-//             });
-//         }
+        // Validate if the provided ID is a valid ObjectId
+        if (!ObjectId.isValid(TeamId)) {
+            return res.status(400).json({
+                status: "error",
+                msg: "Invalid Team ID"
+            });
+        }
 
-//         // Fetch Team by ID from the collection
-//         let Team = await TeamCollection.findOne({ _id: new ObjectId(TeamId) });
+        // Fetch Team by ID from the collection
+        let team = await teamCollection.findOne({ _id: new ObjectId(TeamId) });
 
-//         if (!Team) {
-//             return res.status(404).json({
-//                 status: "error",
-//                 msg: "Team not found"
-//             });
-//         }
+        if (!team) {
+            return res.status(404).json({
+                status: "error",
+                msg: "Team not found"
+            });
+        }
 
-//         // Return Team data on success
-//         res.status(200).json({
-//             status: "success",
-//             message: "Team fetched successfully",
-//             data: Team
-//         });
-//     } catch (error) {
-//         console.error('Error fetching Team:', error); // Log the error for debugging purposes
-//         return res.status(500).json({
-//             status: "error",
-//             msg: "Internal server error"
-//         });
-//     }
-// };
+        // Return Team data on success
+        res.status(200).json({
+            status: "success",
+            message: "Team fetched successfully",
+            data: team
+        });
+    } catch (error) {
+        console.error('Error fetching Team:', error); // Log the error for debugging purposes
+        return res.status(500).json({
+            status: "error",
+            msg: "Internal server error"
+        });
+    }
+};
 
 // const updateTeam = async (req, res, TeamCollection) => {
 //     try {
@@ -121,4 +121,4 @@ const allTeams = async (req, res, teamCollection) => {
 
 
 
-module.exports = { createTeam,allTeams };
+module.exports = { createTeam,allTeams,singleTeam };

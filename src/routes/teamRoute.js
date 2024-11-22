@@ -1,5 +1,5 @@
 const express = require("express");
-const {createTeam, allTeams} = require("../controllers/teamController")
+const {createTeam, allTeams, singleTeam} = require("../controllers/teamController")
 
 
 function teamRoute(teamCollection) {
@@ -8,6 +8,7 @@ function teamRoute(teamCollection) {
 
     router.post("/team", (req, res) => createTeam(req, res, teamCollection));
     router.get("/team", (req, res) => allTeams(req, res, teamCollection));
+    router.get("/team/:id", (req, res) => singleTeam(req, res, teamCollection));
     // router.get("/product", (req, res) =>(req, res, teamCollection));
     // router.get("/product/:id", (req, res) => (req, res, teamCollection));
     // router.put("/product/:id", (req, res) => (req, res, teamCollection));
