@@ -1,5 +1,5 @@
 const express = require("express");
-const { createProduct, allProducts } = require("../controllers/productController")
+const { createProduct, allProducts,singleProduct } = require("../controllers/productController")
 
 
 function productRoute(productCollection) {
@@ -8,6 +8,8 @@ function productRoute(productCollection) {
 
     router.post("/product", (req, res) => createProduct(req, res, productCollection));
     router.get("/product", (req, res) => allProducts(req, res, productCollection));
+    router.get("/product/:id", (req, res) => singleProduct(req, res, productCollection));
+
 
 
 
