@@ -16,5 +16,20 @@ const createBanner = async (req, res, bannerCollection) => {
     }
 };
 
+const allBanners = async (req, res, bannerCollection) => {
+    try {
+        let banners = await bannerCollection.find().toArray();
+        return res.status(200).json({
+            status: "success",
+            data: banners
+        })
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            msg: error.message
+        })
+    }
+};
 
-module.exports = { createBanner };
+
+module.exports = { createBanner,allBanners };
