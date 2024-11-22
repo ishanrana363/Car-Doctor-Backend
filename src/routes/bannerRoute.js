@@ -1,5 +1,5 @@
 const express = require("express");
-const { createBanner,allBanners,updateBanner } = require("../controllers/bannerController")
+const { createBanner,allBanners,updateBanner, deleteBanner } = require("../controllers/bannerController")
 
 
 function bannerRoute(bannerCollection) {
@@ -8,8 +8,9 @@ function bannerRoute(bannerCollection) {
     router.post("/banner", (req, res) => createBanner(req, res, bannerCollection));
     router.get("/banner", (req, res) => allBanners(req, res,bannerCollection));
     router.put("/banner/:id", (req, res) => updateBanner(req, res,bannerCollection));
-
-
+    router.delete("/banner/:id", (req, res) => deleteBanner(req, res,bannerCollection));
+    
+    
 
 
 
