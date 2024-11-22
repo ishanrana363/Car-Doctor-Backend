@@ -74,4 +74,51 @@ const singleProduct = async (req, res, productCollection) => {
     }
 };
 
-module.exports = { createProduct, allProducts, singleProduct };
+const updateProduct = async (req, res, productCollection) => {
+    try {
+        let reqBody = req.body;
+        let bannerId = req.params.id;
+        let updateResult = await productCollection.updateOne({ _id: new ObjectId(bannerId) }, { $set: reqBody });
+        if (updateResult.modifiedCount === 0) {
+            return res.status(404).json({
+                status: "error",
+                msg: "Product not found"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            message: "Product updated successfully"
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            msg: error.message
+        });
+    } // <-- Closing brace for the catch block
+};
+
+const deleteProduct = async (req, res, productCollection) => {
+    try {
+        let bannerId = req.params.id;
+        let deleteResult = await productCollection.deleteOne({ _id: new ObjectId(bannerId) });
+        if (deleteResult.deletedCount === 0) {
+            return res.status(404).json({
+                status: "error",
+                msg: "Product not found"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            message: "Product deleted successfully"
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            msg: error.message
+        });
+    } // <-- Closing brace for the catch block
+};
+
+
+
+module.exports = { createProduct, allProducts, singleProduct,updateProduct,deleteProduct };
