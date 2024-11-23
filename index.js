@@ -6,6 +6,7 @@ const productRoute = require("./src/routes/productRoute");
 const bannerRoute = require("./src/routes/bannerRoute");
 const teamRoute = require("./src/routes/teamRoute");
 const reviewRoute = require("./src/routes/reviewRoute");
+const chooseRoute = require("./src/routes/chooseRoute");
 
 
 
@@ -22,11 +23,14 @@ const port = process.env.PORT || 3000;
     const bannerCollection = db.collection("banners");
     const teamCollection = db.collection("teams");
     const reviewCollection = db.collection("reviews");
+    const chooseCollection = db.collection("choose");
 
     app.use("/api/v1", productRoute(productCollection));
     app.use("/api/v1",  bannerRoute(bannerCollection));
     app.use("/api/v1",  teamRoute(teamCollection));
     app.use("/api/v1",  reviewRoute(reviewCollection));
+    app.use("/api/v1",  chooseRoute(chooseCollection));
+
 
     app.get('/',async (req,res)=>{
         res.send('Welcome to the Product API');
