@@ -37,42 +37,42 @@ const allReviews = async (req, res, reviewCollection) => {
     }
 };
 
-// const singleProduct = async (req, res, productCollection) => {
-//     try {
-//         const productId = req.params.id;
+const singleReview = async (req, res, reviewCollection) => {
+    try {
+        const reviewId = req.params.id;
 
-//         // Validate if the provided ID is a valid ObjectId
-//         if (!ObjectId.isValid(productId)) {
-//             return res.status(400).json({
-//                 status: "error",
-//                 msg: "Invalid product ID"
-//             });
-//         }
+        // Validate if the review ID is a valid ObjectId
+        if (!ObjectId.isValid(reviewId)) {
+            return res.status(400).json({
+                status: "error",
+                msg: "Invalid review ID"
+            });
+        }
 
-//         // Fetch product by ID from the collection
-//         let product = await productCollection.findOne({ _id: new ObjectId(productId) });
+        // Fetch product by ID from the collection
+        let review = await reviewCollection.findOne({ _id: new ObjectId(reviewId) });
 
-//         if (!product) {
-//             return res.status(404).json({
-//                 status: "error",
-//                 msg: "Product not found"
-//             });
-//         }
+        if (!review) {
+            return res.status(404).json({
+                status: "error",
+                msg: "Review not found"
+            });
+        }
 
-//         // Return product data on success
-//         res.status(200).json({
-//             status: "success",
-//             message: "Product fetched successfully",
-//             data: product
-//         });
-//     } catch (error) {
-//         console.error('Error fetching product:', error); // Log the error for debugging purposes
-//         return res.status(500).json({
-//             status: "error",
-//             msg: "Internal server error"
-//         });
-//     }
-// };
+        // Return product data on success
+        res.status(200).json({
+            status: "success",
+            message: "Review fetched successfully",
+            data: review
+        });
+    } catch (error) {
+        console.error('Error fetching review:', error); // Log the error for debugging purposes
+        return res.status(500).json({
+            status: "error",
+            msg: "Internal server error"
+        });
+    }
+};
 
 // const updateProduct = async (req, res, productCollection) => {
 //     try {
@@ -121,4 +121,4 @@ const allReviews = async (req, res, reviewCollection) => {
 
 
 
-module.exports = { createReview,allReviews };
+module.exports = { createReview,allReviews,singleReview };
