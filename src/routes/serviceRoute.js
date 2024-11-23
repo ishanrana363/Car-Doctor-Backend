@@ -1,5 +1,5 @@
 const express = require("express");
-const { createService, allService, singleService, updateService} = require("../controllers/serviceController")
+const { createService, allService, singleService, updateService, deleteServic} = require("../controllers/serviceController")
 
 
 function serviceRoute(serviceCollection) {
@@ -10,11 +10,9 @@ function serviceRoute(serviceCollection) {
     router.get("/service", (req, res) => allService(req, res, serviceCollection));
     router.get("/service/:id", (req, res) => singleService(req, res, serviceCollection));
     router.put("/service/:id", (req, res) => updateService(req, res, serviceCollection));
+    router.delete("/service/:id", (req, res) => deleteServic(req, res, serviceCollection));
 
-    // router.get("/team", (req, res) => allTeams(req, res, teamCollection));
-    // router.get("/team/:id", (req, res) => singleTeam(req, res, teamCollection));
-    // router.put("/team/:id", (req, res) => updateTeam(req, res, teamCollection));
-    // router.delete("/team/:id", (req, res) => deleteTeam(req, res, teamCollection));
+
 
 
 

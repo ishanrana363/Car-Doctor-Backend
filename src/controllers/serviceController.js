@@ -97,28 +97,28 @@ const updateService = async (req, res, serviceCollection) => {
     } // <-- Closing brace for the catch block
 };
 
-// const deleteTeam = async (req, res, teamCollection) => {
-//     try {
-//         let bannerId = req.params.id;
-//         let deleteResult = await teamCollection.deleteOne({ _id: new ObjectId(bannerId) });
-//         if (deleteResult.deletedCount === 0) {
-//             return res.status(404).json({
-//                 status: "error",
-//                 msg: "Team not found"
-//             });
-//         }
-//         return res.status(200).json({
-//             status: "success",
-//             message: "Team deleted successfully"
-//         });
-//     } catch (error) {
-//         return res.status(500).json({
-//             status: "error",
-//             msg: error.message
-//         });
-//     } // <-- Closing brace for the catch block
-// };
+const deleteServic = async (req, res, serviceCollection) => {
+    try {
+        let serviceId = req.params.id;
+        let deleteResult = await serviceCollection.deleteOne({ _id: new ObjectId(serviceId) });
+        if (deleteResult.deletedCount === 0) {
+            return res.status(404).json({
+                status: "error",
+                msg: "Service not found"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            message: "Service deleted successfully"
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            msg: error.message
+        });
+    } // <-- Closing brace for the catch block
+};
 
 
 
-module.exports = {createService ,allService,singleService,updateService};
+module.exports = {createService ,allService,singleService,updateService,deleteServic};
