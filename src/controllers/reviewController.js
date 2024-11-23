@@ -97,28 +97,28 @@ const updateReview = async (req, res, reviewCollection) => {
     } // <-- Closing brace for the catch block
 };
 
-// const deleteProduct = async (req, res, productCollection) => {
-//     try {
-//         let bannerId = req.params.id;
-//         let deleteResult = await productCollection.deleteOne({ _id: new ObjectId(bannerId) });
-//         if (deleteResult.deletedCount === 0) {
-//             return res.status(404).json({
-//                 status: "error",
-//                 msg: "Product not found"
-//             });
-//         }
-//         return res.status(200).json({
-//             status: "success",
-//             message: "Product deleted successfully"
-//         });
-//     } catch (error) {
-//         return res.status(500).json({
-//             status: "error",
-//             msg: error.message
-//         });
-//     } // <-- Closing brace for the catch block
-// };
+const deleteReview = async (req, res, reviewCollection) => {
+    try {
+        let reviewId = req.params.id;
+        let deleteResult = await reviewCollection.deleteOne({ _id: new ObjectId(reviewId) });
+        if (deleteResult.deletedCount === 0) {
+            return res.status(404).json({
+                status: "error",
+                msg: "Review not found"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            message: "Review deleted successfully"
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            msg: error.message
+        });
+    } // <-- Closing brace for the catch block
+};
 
 
 
-module.exports = { createReview,allReviews,singleReview,updateReview };
+module.exports = { createReview,allReviews,singleReview,updateReview,deleteReview };
