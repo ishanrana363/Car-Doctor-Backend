@@ -74,28 +74,28 @@ const singleService = async (req, res, serviceCollection) => {
     }
 };
 
-// const updateTeam = async (req, res, teamCollection) => {
-//     try {
-//         let reqBody = req.body;
-//         let bannerId = req.params.id;
-//         let updateResult = await teamCollection.updateOne({ _id: new ObjectId(bannerId) }, { $set: reqBody });
-//         if (updateResult.modifiedCount === 0) {
-//             return res.status(404).json({
-//                 status: "error",
-//                 msg: "Team not found"
-//             });
-//         }
-//         return res.status(200).json({
-//             status: "success",
-//             message: "Team updated successfully"
-//         });
-//     } catch (error) {
-//         return res.status(500).json({
-//             status: "error",
-//             msg: error.message
-//         });
-//     } // <-- Closing brace for the catch block
-// };
+const updateService = async (req, res, serviceCollection) => {
+    try {
+        let reqBody = req.body;
+        let serviceId = req.params.id;
+        let updateResult = await serviceCollection.updateOne({ _id: new ObjectId(serviceId) }, { $set: reqBody });
+        if (updateResult.modifiedCount === 0) {
+            return res.status(404).json({
+                status: "error",
+                msg: "Service not found"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            message: "Service updated successfully"
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            msg: error.message
+        });
+    } // <-- Closing brace for the catch block
+};
 
 // const deleteTeam = async (req, res, teamCollection) => {
 //     try {
@@ -121,4 +121,4 @@ const singleService = async (req, res, serviceCollection) => {
 
 
 
-module.exports = {createService ,allService,singleService};
+module.exports = {createService ,allService,singleService,updateService};
