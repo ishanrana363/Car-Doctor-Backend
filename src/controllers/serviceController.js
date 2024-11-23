@@ -37,42 +37,42 @@ const allService = async (req, res, serviceCollection) => {
     }
 };
 
-// const singleTeam = async (req, res, teamCollection) => {
-//     try {
-//         const TeamId = req.params.id;
+const singleService = async (req, res, serviceCollection) => {
+    try {
+        const serviceId = req.params.id;
 
-//         // Validate if the provided ID is a valid ObjectId
-//         if (!ObjectId.isValid(TeamId)) {
-//             return res.status(400).json({
-//                 status: "error",
-//                 msg: "Invalid Team ID"
-//             });
-//         }
+        // Validate if the service ID is a valid ObjectId
+        if (!ObjectId.isValid(serviceId)) {
+            return res.status(400).json({
+                status: "error",
+                msg: "Invalid service ID"
+            });
+        }
 
-//         // Fetch Team by ID from the collection
-//         let team = await teamCollection.findOne({ _id: new ObjectId(TeamId) });
+        // Fetch Team by ID from the collection
+        let service = await serviceCollection.findOne({ _id: new ObjectId(serviceId) });
 
-//         if (!team) {
-//             return res.status(404).json({
-//                 status: "error",
-//                 msg: "Team not found"
-//             });
-//         }
+        if (!service) {
+            return res.status(404).json({
+                status: "error",
+                msg: "Service not found"
+            });
+        }
 
-//         // Return Team data on success
-//         res.status(200).json({
-//             status: "success",
-//             message: "Team fetched successfully",
-//             data: team
-//         });
-//     } catch (error) {
-//         console.error('Error fetching Team:', error); // Log the error for debugging purposes
-//         return res.status(500).json({
-//             status: "error",
-//             msg: "Internal server error"
-//         });
-//     }
-// };
+        // Return Team data on success
+        res.status(200).json({
+            status: "success",
+            message: "Service fetched successfully",
+            data: service
+        });
+    } catch (error) {
+        console.error('Error fetching service:', error); // Log the error for debugging purposes
+        return res.status(500).json({
+            status: "error",
+            msg: "Internal server error"
+        });
+    }
+};
 
 // const updateTeam = async (req, res, teamCollection) => {
 //     try {
@@ -121,4 +121,4 @@ const allService = async (req, res, serviceCollection) => {
 
 
 
-module.exports = {createService ,allService};
+module.exports = {createService ,allService,singleService};
