@@ -74,28 +74,28 @@ const singleReview = async (req, res, reviewCollection) => {
     }
 };
 
-// const updateProduct = async (req, res, productCollection) => {
-//     try {
-//         let reqBody = req.body;
-//         let bannerId = req.params.id;
-//         let updateResult = await productCollection.updateOne({ _id: new ObjectId(bannerId) }, { $set: reqBody });
-//         if (updateResult.modifiedCount === 0) {
-//             return res.status(404).json({
-//                 status: "error",
-//                 msg: "Product not found"
-//             });
-//         }
-//         return res.status(200).json({
-//             status: "success",
-//             message: "Product updated successfully"
-//         });
-//     } catch (error) {
-//         return res.status(500).json({
-//             status: "error",
-//             msg: error.message
-//         });
-//     } // <-- Closing brace for the catch block
-// };
+const updateReview = async (req, res, reviewCollection) => {
+    try {
+        let reqBody = req.body;
+        let reviewId = req.params.id;
+        let updateResult = await reviewCollection.updateOne({ _id: new ObjectId(reviewId) }, { $set: reqBody });
+        if (updateResult.modifiedCount === 0) {
+            return res.status(404).json({
+                status: "error",
+                msg: "Review not found"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            message: "Review updated successfully"
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            msg: error.message
+        });
+    } // <-- Closing brace for the catch block
+};
 
 // const deleteProduct = async (req, res, productCollection) => {
 //     try {
@@ -121,4 +121,4 @@ const singleReview = async (req, res, reviewCollection) => {
 
 
 
-module.exports = { createReview,allReviews,singleReview };
+module.exports = { createReview,allReviews,singleReview,updateReview };
