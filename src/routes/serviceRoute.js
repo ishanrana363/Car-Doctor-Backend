@@ -1,5 +1,5 @@
 const express = require("express");
-const { createService} = require("../controllers/serviceController")
+const { createService, allService} = require("../controllers/serviceController")
 
 
 function serviceRoute(serviceCollection) {
@@ -7,6 +7,7 @@ function serviceRoute(serviceCollection) {
 
 
     router.post("/service", (req, res) => createService(req, res, serviceCollection));
+    router.get("/service", (req, res) => allService(req, res, serviceCollection));
 
     // router.get("/team", (req, res) => allTeams(req, res, teamCollection));
     // router.get("/team/:id", (req, res) => singleTeam(req, res, teamCollection));
