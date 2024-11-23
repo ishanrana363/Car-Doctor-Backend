@@ -1,5 +1,5 @@
 const express = require("express");
-const { createReview } = require("../controllers/reviewController")
+const { createReview, allReviews } = require("../controllers/reviewController")
 
 
 function reviewRoute(reviewCollection) {
@@ -7,6 +7,7 @@ function reviewRoute(reviewCollection) {
 
 
     router.post("/review", (req, res) => createReview(req, res, reviewCollection));
+    router.get("/review", (req, res) => allReviews(req, res, reviewCollection));
 
 
 

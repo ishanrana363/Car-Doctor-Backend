@@ -17,25 +17,25 @@ const createReview = async (req, res, reviewCollection) => {
     }
 };
 
-// const allProducts = async (req, res, productCollection) => {
-//     try {
-//         // Fetch all products from the collection
-//         let products = await productCollection.find().toArray();
+const allReviews = async (req, res, reviewCollection) => {
+    try {
+        // Fetch all products from the collection
+        let review = await reviewCollection.find().toArray();
 
-//         // Return successful response with products data
-//         return res.status(200).json({
-//             status: "success",
-//             message: "All products fetched successfully",
-//             data: products
-//         });
-//     } catch (error) {
-//         // Catch any errors and return an error response
-//         return res.status(500).json({
-//             status: "error",
-//             msg: error.message
-//         });
-//     }
-// };
+        // Return successful response with products data
+        return res.status(200).json({
+            status: "success",
+            message: "All review fetched successfully",
+            data: review
+        });
+    } catch (error) {
+        // Catch any errors and return an error response
+        return res.status(500).json({
+            status: "error",
+            msg: error.message
+        });
+    }
+};
 
 // const singleProduct = async (req, res, productCollection) => {
 //     try {
@@ -121,4 +121,4 @@ const createReview = async (req, res, reviewCollection) => {
 
 
 
-module.exports = { createReview, };
+module.exports = { createReview,allReviews };
