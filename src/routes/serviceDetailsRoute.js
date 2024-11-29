@@ -1,5 +1,5 @@
 const express = require("express");
-const {createServiceDetails } = require("../controllers/serviceDetailsController");
+const {createServiceDetails, serviceById } = require("../controllers/serviceDetailsController");
 
 
 function servideDetails(serviceDetailsCollection) {
@@ -7,6 +7,7 @@ function servideDetails(serviceDetailsCollection) {
 
 
     router.post("/service-details", (req, res) => createServiceDetails(req, res, serviceDetailsCollection));
+    router.get("/service-by-id/:id", (req, res) => serviceById(req, res, serviceDetailsCollection));
 
 
 
