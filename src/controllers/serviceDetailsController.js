@@ -40,4 +40,19 @@ const serviceById  = async (req, res, serviceCollection) => {
     }
 };
 
-module.exports = {createServiceDetails,serviceById};
+const serviceList = async (req, res,serviceCollection) =>{
+    try {
+        let services = await serviceCollection.find().toArray();
+        return res.status(200).json({
+            status: "success",
+            data: services
+        })
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            msg: error.message
+        })
+    }
+} 
+
+module.exports = {createServiceDetails,serviceById,serviceList};
