@@ -9,6 +9,7 @@ const reviewRoute = require("./src/routes/reviewRoute");
 const chooseRoute = require("./src/routes/chooseRoute");
 const serviceRoute = require("./src/routes/serviceRoute");
 const servideDetails = require("./src/routes/serviceDetailsRoute");
+const checkoutRoute = require("./src/routes/checkoutRoute");
 
 
 
@@ -28,6 +29,7 @@ const port = process.env.PORT || 3000;
     const chooseCollection = db.collection("choose");
     const serviceCollection = db.collection("services");
     const serviceDetailsCollection = db.collection("servicesDetails");
+    const checkoutCollection = db.collection("checkouts");
 
     app.use("/api/v1", productRoute(productCollection));
     app.use("/api/v1",  bannerRoute(bannerCollection));
@@ -36,6 +38,7 @@ const port = process.env.PORT || 3000;
     app.use("/api/v1",  chooseRoute(chooseCollection));
     app.use("/api/v1",  serviceRoute(serviceCollection));
     app.use("/api/v1",  servideDetails(serviceDetailsCollection));
+    app.use("/api/v1",  checkoutRoute(checkoutCollection));
 
 
     app.get('/',async (req,res)=>{
